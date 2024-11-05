@@ -1,0 +1,7 @@
+services:
+  db:
+    volumes:
+      - ./.warden/db/enable_event_scheduler.cnf:/etc/mysql/mariadb.conf.d/event_scheduler.cnf
+  nginx:
+    volumes:
+      - ./.warden/nginx/application.conf:/etc/nginx/available.d/application.conf

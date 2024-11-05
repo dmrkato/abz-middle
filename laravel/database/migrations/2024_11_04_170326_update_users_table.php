@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('name', 60)->change();
+            $table->string('password')->nullable()->change();
             $table->foreignIdFor(Position::class)
                 ->after('email')
                 ->references(app(Position::class)->getKeyName())
