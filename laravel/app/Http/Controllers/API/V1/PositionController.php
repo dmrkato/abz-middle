@@ -20,7 +20,7 @@ class PositionController extends BaseController
             foreach ($positions as $position) {
                 $responseData['positions'][] = new PositionResource($position);
             }
-            $responseData = Cache::put('positions', $responseData, now()->addMinutes(1));
+            Cache::put('positions', $responseData, now()->addMinutes(1));
         }
 
         return response()->json($responseData);
