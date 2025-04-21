@@ -26,6 +26,10 @@ jobs:
           ssh-keyscan -H ${{ secrets.MASTER_SERVER_HOST }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Set executable permissions for deploy script
+        run: |
+          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "chmod +x /home/ubuntu/abz-middle/.scripts/deploy.sh"
+
       # Умови деплойменту для різних гілок
 #      - name: Deploy to the VIP server
 #        if: github.ref == 'refs/heads/vip'
