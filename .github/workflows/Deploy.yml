@@ -1,0 +1,32 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - master
+#      - vip
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      # configure SSH connection to server
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Умови деплойменту для різних гілок
+#      - name: Deploy to the VIP server
+#        if: github.ref == 'refs/heads/vip'
+#        run: |
+#          ssh user@vip-server "cd /path/to/app && git pull && ./deploy-script.sh"
+
+      - name: Deploy to the Main server
+        if: github.ref == 'refs/heads/master'
+        run: |
+          ssh ${{MASTER_SERVER_USERNAME}}@${{MASTER_SERVER_HOST}} "cd /home/ubuntu/abz-middle && git pull && ./deploy.sh"
