@@ -20,6 +20,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.MASTER_SERVER_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
       # Умови деплойменту для різних гілок
 #      - name: Deploy to the VIP server
 #        if: github.ref == 'refs/heads/vip'
