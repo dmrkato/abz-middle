@@ -35,4 +35,4 @@ jobs:
       - name: Deploy to the Main server
         if: github.ref == 'refs/heads/master'
         run: |
-          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "cd /home/ubuntu/abz-middle && git pull && ./deploy.sh"
+          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "cd /home/ubuntu/abz-middle && git pull && .scripts/deploy.sh"
