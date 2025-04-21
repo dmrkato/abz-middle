@@ -28,7 +28,7 @@ jobs:
 
       - name: Set executable permissions for deploy script
         run: |
-          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "chmod +x /home/ubuntu/abz-middle/.scripts/deploy.sh"
+          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "chmod +x ${{ secrets.MASTER_SERVER_PROJECT_PATH }}/.scripts/deploy.sh"
 
       # Умови деплойменту для різних гілок
 #      - name: Deploy to the VIP server
@@ -39,4 +39,4 @@ jobs:
       - name: Deploy to the Main server
         if: github.ref == 'refs/heads/master'
         run: |
-          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "cd /home/ubuntu/abz-middle && git pull && .scripts/deploy.sh"
+          ssh ${{ secrets.MASTER_SERVER_USERNAME }}@${{ secrets.MASTER_SERVER_HOST }} "cd ${{ secrets.MASTER_SERVER_PROJECT_PATH }} && git pull && .scripts/deploy.sh "
