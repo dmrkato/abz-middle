@@ -4,7 +4,7 @@
 set -e
 
 # Move to app directory
-cd /home/ubuntu/abz-middle
+cd /home/ubuntu/abz-middle/laravel
 
 echo "Pulling latest changes from the repository..."
 git pull origin $(git rev-parse --abbrev-ref HEAD)
